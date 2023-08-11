@@ -58,7 +58,8 @@ export const Register = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
-    }).then(response => response.json())
+    })
+    .then(response => response.json())
     .then(console.log('Inscription réussie !'))
     loginAfterRegister();
   }

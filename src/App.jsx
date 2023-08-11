@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import './App.css';
+import { ChangeProfil } from './components/ChangeProfil';
 
 function App() {
 
@@ -19,7 +20,9 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='login' element={<Login />}/>
           <Route path='register' element={<Register />}/>
-          <Route path='profile' element={<Profile />}/>
+          <Route path='profile' element={<Profile />}>
+            <Route path ='changeprofile' element={<ChangeProfil/>} />
+          </Route>
         </Routes>
       </Router>
     </Provider>
