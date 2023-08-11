@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { changeProfile } from '../store';
+import { useDispatch } from 'react-redux';
+
 
 export const Login = () => {
   const [login, setLogin] = useState({});
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
     e.preventDefault();
@@ -11,6 +15,7 @@ export const Login = () => {
     const value = e.target.value;
     setLogin(values => ({...values, [name]: value}));
   }
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +30,21 @@ export const Login = () => {
       },
       body: JSON.stringify(data)
     }).then(response => response.json())
-      .then(data => Cookies.set('token', data.jwt, { expires: 7 }));
-      navigate('../')
+    .then(data => {
+      Cookies.set('token', data.jwt, { expires: 7 })
+      dispatch(
+        changeProfile({
+          username: data.user.username,
+          email: data.user.email,
+          description: data.user.description,
+          id: data.user.id
+        })
+      );
+    });
+    navigate('../');
+    console.log('Connexion réussie !')
   }
+  
   return (
     <>
       <form onSubmit={handleSubmit}>

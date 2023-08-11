@@ -2,9 +2,12 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+import { changeProfile } from '../store';
+import { useDispatch } from 'react-redux';
 
 export const Register = () => {
   const [inputs, setInputs] = useState({});
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
     e.preventDefault();
@@ -12,6 +15,36 @@ export const Register = () => {
     const value = e.target.value;
     setInputs(values => ({...values, [name]: value}));
   }
+
+  const loginAfterRegister = () => {
+    const data = {
+      identifier: inputs.username,
+      password: inputs.password
+    };
+    fetch('http://localhost:8080/api/auth/local', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      Cookies.set('token', data.jwt, { expires: 7 })
+      dispatch(
+        changeProfile({
+          username: data.user.username,
+          email: data.user.email,
+          description: data.user.description,
+          id: data.user.id
+        })
+      );
+    });
+    navigate('../');
+    console.log('Connexion réussie !')
+  }
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -26,8 +59,8 @@ export const Register = () => {
       },
       body: JSON.stringify(data)
     }).then(response => response.json())
-      .then(data => Cookies.set('token', data.jwt, { expires: 7 }));
-      navigate('../profile')
+    .then(console.log('Inscription réussie !'))
+    loginAfterRegister();
   }
 
   return (
