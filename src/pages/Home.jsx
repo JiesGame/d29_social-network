@@ -29,7 +29,7 @@ export const Home = () => {
       body: JSON.stringify(objectData)
     })
     .then(response => response.json())
-    .then(console.log('Le post a bien été enregistré !'))
+    .then(() => {window.location.reload()})
   };
 
   const handleChange = (e) => {
