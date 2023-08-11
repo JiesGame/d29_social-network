@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Cookies from 'js-cookie';
 import { useSelector } from "react-redux";
+import { ListPosts } from '../components/ListPosts'
 
 export const Home = () => {
   const [message, setMessage] = useState('');
@@ -49,6 +50,7 @@ export const Home = () => {
         </label>
         <input type="submit" value="Poster" />
       </form>
+      <ListPosts />      
     </>
   )
 }

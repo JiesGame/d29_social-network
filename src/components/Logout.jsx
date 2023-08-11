@@ -9,6 +9,10 @@ export const Logout = () => {
   const dispatch = useDispatch();
   const logout = () => {
     Cookies.remove('token');
+    Cookies.remove('email');
+    Cookies.remove('description');
+    Cookies.remove('id');
+    Cookies.remove('username');
     dispatch(
       changeProfile({
         username:'',
