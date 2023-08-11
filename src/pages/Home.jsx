@@ -2,11 +2,15 @@
 import { useState } from "react";
 import Cookies from 'js-cookie';
 import { useSelector } from "react-redux";
-import { ListPosts } from '../components/ListPosts'
+import { ListPosts } from '../components/ListPosts';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Home = () => {
   const [message, setMessage] = useState('');
-  const userId = useSelector((state) => state.user.value.id)
+  const userId = useSelector((state) => state.user.value.id);
+  const navigate = useNavigate();
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();

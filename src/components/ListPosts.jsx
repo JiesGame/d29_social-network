@@ -21,6 +21,7 @@ export const ListPosts = () => {
   return (
     <>
       <h2>Liste des posts</h2>
+      <p>Il y a actuellement {postsNumber} posts.</p>
       {dataPosts}
     </>
   )
