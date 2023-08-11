@@ -2,11 +2,14 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeProfile } from '../store';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export const ChangeProfil = () => {
   const [inputs, setInputs] = useState({});
   const userId = useSelector((state) => state.user.value.id);
+  const email = useSelector((state) => state.user.value.email)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,9 +31,14 @@ export const ChangeProfil = () => {
       dispatch(
         (changeProfile({
           username: inputs.username,
-          description: inputs.description
+          description: inputs.description,
+          email: email,
+          id: userId
         }))
       ),
+      Cookies.set('username', inputs.username),
+      Cookies.set('description', inputs.description),
+      navigate('../../profile')
     )
   }
 

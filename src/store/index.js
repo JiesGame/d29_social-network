@@ -1,8 +1,17 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
+
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: {value: {username:'', email:'', description:'', id:''}},
+  initialState: {
+    value: {
+      username: Cookies.get('username') || "",
+      email: Cookies.get('email') || "",
+      description: Cookies.get('description') || "",
+      id: Cookies.get('id') || "",
+      }
+    },
   reducers: {
     changeProfile: (state, action) => {
       state.value = action.payload;

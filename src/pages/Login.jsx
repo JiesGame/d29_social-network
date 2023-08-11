@@ -32,6 +32,10 @@ export const Login = () => {
     }).then(response => response.json())
     .then(data => {
       Cookies.set('token', data.jwt, { expires: 7 })
+      Cookies.set('username', data.user.username, { expires: 7 })
+      Cookies.set('email', data.user.email, { expires: 7 })
+      Cookies.set('description', data.user.description, { expires: 7 })
+      Cookies.set('id', data.user.id, { expires: 7 })
       dispatch(
         changeProfile({
           username: data.user.username,

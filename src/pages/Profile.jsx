@@ -29,7 +29,7 @@ export const Profile = () => {
         <div>
           <p>Nom d'utilisateur : {username}</p>
           <p>Adresse mail : {email}</p>
-          <p>Description : {description ? description : 'Vous n\'avez pas encore rempli votre description'}</p>
+          <p>Description : {description !== null ? description : 'Vous n\'avez pas encore rempli votre description'}</p>
         </div>
         <div>
           <Link to='changeprofile'>Modifier son profil</Link>
