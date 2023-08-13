@@ -8,10 +8,10 @@ export const Navbar = () => {
   return (
     <div className='Navbar'>
       <Link to='/'>Home</Link>
-      <Link to='login'>Login</Link>
-      <Link to='profile'>Profile</Link>
-      <Link to='register'>Register</Link>
-      <Logout />
+      {!username && <Link to='login'>Login</Link>}
+      {username && <Link to='profile'>Profile</Link>}
+      {!username && <Link to='register'>Register</Link>}
+      {username && <Logout />}
       {username ? <p>Profil de : {username} </p> : <p>Non connecté</p>}
     </div>
   )

@@ -8,6 +8,7 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import './App.css';
 import { ChangeProfil } from './components/ChangeProfil';
+import { User } from './pages/User';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='profile' element={<Profile />}>
             <Route path ='changeprofile' element={<ChangeProfil/>} />
           </Route>
+          <Route path='user/[user]' element={<User />}/>
         </Routes>
       </Router>
     </Provider>
