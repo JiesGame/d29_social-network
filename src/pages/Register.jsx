@@ -43,6 +43,9 @@ export const Register = () => {
           id: data.user.id
         })
       );
+    })
+    .catch(error => {
+      console.error(error);
     });
     navigate('../');
     console.log('Connexion réussie !')
@@ -65,6 +68,9 @@ export const Register = () => {
     })
     .then(response => response.json())
     .then(console.log('Inscription réussie !'))
+    .catch(error => {
+      console.error(error);
+    });
     loginAfterRegister();
   }
 

@@ -40,6 +40,9 @@ export const ChangeProfil = () => {
       Cookies.set('description', inputs.description),
       navigate('../../profile')
     )
+    .catch(error => {
+      console.error(error);
+    });
   }
 
   const handleChange = (e) => {
